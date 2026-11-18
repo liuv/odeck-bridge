@@ -6,7 +6,7 @@
     "support": "lindenliu@hotmail.com",
     # Release branches use the matching Odoo series as the version prefix.
     # Shared source is maintained for Odoo 17, 18, 19, and 20.
-    "version": "1.0.5",
+    "version": "1.0.6",
     "category": "Tools",
     "images": [
         "images/odeck_bridge_screenshot.png",
