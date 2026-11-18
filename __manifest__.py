@@ -8,6 +8,10 @@
     # Shared source is maintained for Odoo 17, 18, 19, and 20.
     "version": "17.0.1.0.5",
     "category": "Tools",
+    "images": [
+        "images/odeck_bridge_screenshot.png",
+        "images/odeck_bridge_flow.png",
+    ],
     "license": "LGPL-3",
     "depends": ["account", "product"],
     "data": [],
