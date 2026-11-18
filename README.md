@@ -52,4 +52,4 @@ Python source strings are English and marked with Odoo's translation function. S
 
 ## License and maintainer
 
-Copyright © 2026 Linden Liu. Licensed under the GNU Lesser General Public License v3.0 (`LGPL-3`). See [LICENSE.md](LICENSE.md) for the license notice. Project website: <https://lindenliu.cn>.
+Copyright © 2026 Linden Liu. Licensed under the GNU Lesser General Public License v3.0 (`LGPL-3`). See [LICENSE.md](LICENSE.md) for the license notice. Support: <mailto:lindenliu@hotmail.com>.
