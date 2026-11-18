@@ -44,7 +44,11 @@ Both methods run as the authenticated user. They do not use `sudo()` to read bus
 
 ## Release branches
 
-The `main` branch contains shared source. Odoo Apps release branches use the Odoo series as their branch name and the matching version prefix in the manifest, for example `17.0` with version `17.0.1.0.3`. The technical module name remains `odeck_bridge` across supported Odoo series.
+The `main` branch contains shared source. Odoo Apps release branches use the Odoo series as their branch name and matching version prefix in the manifest (for example, `17.0.x.y.z`). The technical module name remains `odeck_bridge` across supported Odoo series.
+
+## Localization
+
+Python source strings are English and marked with Odoo's translation function. Simplified Chinese translations are provided in `i18n/zh_CN.po`. Odoo uses the active user's language when presenting translated server messages.
 
 ## License and maintainer
 
