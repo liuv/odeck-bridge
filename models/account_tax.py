@@ -21,7 +21,7 @@ class AccountTax(models.Model):
         company_id=None,
         is_refund=False,
     ):
-        """用指定交易币种和关联记录调用 Odoo 标准税引擎，并返回 JSON 数据。"""
+        """Call Odoo's standard tax engine and return JSON-safe results."""
         try:
             tax_ids = [int(tax_id) for tax_id in tax_ids]
             currency_id = int(currency_id)
@@ -31,46 +31,71 @@ class AccountTax(models.Model):
             product_id = int(product_id) if product_id else False
             partner_id = int(partner_id) if partner_id else False
         except (TypeError, ValueError):
-            raise ValidationError(_("税、金额、币种和公司参数无效。"))
+            raise ValidationError(
+                _("Invalid taxes, amount, currency, or company parameters.")
+            )
 
         if not math.isfinite(price_unit) or not math.isfinite(quantity):
-            raise ValidationError(_("金额和数量必须是有限数值。"))
+            raise ValidationError(_("Amount and quantity must be finite numbers."))
         if not isinstance(is_refund, bool):
-            raise ValidationError(_("退款标志必须是布尔值。"))
+            raise ValidationError(_("The refund flag must be a boolean."))
 
         if not tax_ids or any(tax_id <= 0 for tax_id in tax_ids):
-            raise ValidationError(_("必须提供有效税 ID。"))
+            raise ValidationError(_("At least one valid tax ID is required."))
         if currency_id <= 0 or company_id <= 0:
-            raise ValidationError(_("必须提供有效币种和公司 ID。"))
+            raise ValidationError(_("Valid currency and company IDs are required."))
 
         company = self.env["res.company"].browse(company_id).exists()
         if not company or company_id not in self.env.companies.ids:
-            raise AccessError(_("当前用户无权在指定公司计算税额。"))
+            raise AccessError(
+                _("You are not allowed to calculate taxes for the selected company.")
+            )
         ensure_read_access(company)
 
         currency = self.env["res.currency"].browse(currency_id).exists()
         if not currency:
-            raise ValidationError(_("指定币种不存在。"))
+            raise ValidationError(_("The selected currency does not exist."))
         ensure_read_access(currency)
 
         taxes = self.browse(tax_ids).exists()
         if len(taxes) != len(set(tax_ids)):
-            raise ValidationError(_("部分税记录不存在。"))
+            raise ValidationError(_("One or more tax records do not exist."))
         ensure_read_access(taxes)
         if any(tax.company_id not in company._accessible_branches() for tax in taxes):
-            raise AccessError(_("指定税不属于当前公司或其可访问分支。"))
+            raise AccessError(
+                _(
+                    "The selected taxes do not belong to the selected company "
+                    "or its accessible branches."
+                )
+            )
 
-        product = self.env["product.product"].browse(product_id).exists() if product_id else self.env["product.product"]
+        product = (
+            self.env["product.product"].browse(product_id).exists()
+            if product_id
+            else self.env["product.product"]
+        )
         if product_id and not product:
-            raise ValidationError(_("指定商品变体不存在。"))
+            raise ValidationError(_("The selected product variant does not exist."))
         if product:
             ensure_read_access(product)
-            if product.company_id and product.company_id not in company._accessible_branches():
-                raise AccessError(_("指定商品不属于当前公司或其可访问分支。"))
+            if (
+                product.company_id
+                and product.company_id not in company._accessible_branches()
+            ):
+                raise AccessError(
+                    _(
+                        "The selected product does not belong to the selected "
+                        "company or its accessible branches."
+                    )
+                )
 
-        partner = self.env["res.partner"].browse(partner_id).exists() if partner_id else self.env["res.partner"]
+        partner = (
+            self.env["res.partner"].browse(partner_id).exists()
+            if partner_id
+            else self.env["res.partner"]
+        )
         if partner_id and not partner:
-            raise ValidationError(_("指定顾客不存在。"))
+            raise ValidationError(_("The selected customer does not exist."))
         if partner:
             ensure_read_access(partner)
 
