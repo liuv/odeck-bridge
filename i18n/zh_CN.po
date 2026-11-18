@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * odeck_bridge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: odeck_bridge
+msgid "At least one valid tax ID is required."
+msgstr "必须提供至少一个有效的税项 ID。"
+
+#. module: odeck_bridge
+msgid "Amount and quantity must be finite numbers."
+msgstr "金额和数量必须是有限数值。"
+
+#. module: odeck_bridge
+msgid "Invalid taxes, amount, currency, or company parameters."
+msgstr "税项、金额、币种或公司参数无效。"
+
+#. module: odeck_bridge
+msgid "Pricelist, product, and quantity must be greater than zero."
+msgstr "价格表、商品和数量必须大于零。"
+
+#. module: odeck_bridge
+msgid "The refund flag must be a boolean."
+msgstr "退款标志必须为布尔值。"
+
+#. module: odeck_bridge
+msgid "The selected currency does not exist."
+msgstr "所选币种不存在。"
+
+#. module: odeck_bridge
+msgid "The selected customer does not exist."
+msgstr "所选顾客不存在。"
+
+#. module: odeck_bridge
+msgid "The selected product does not belong to the selected company "
+"or its accessible branches."
+msgstr "所选商品不属于当前公司或其可访问的分支公司。"
+
+#. module: odeck_bridge
+msgid "The selected product variant does not exist."
+msgstr "所选商品变体不存在。"
+
+#. module: odeck_bridge
+msgid "The selected pricelist or product no longer exists."
+msgstr "所选价格表或商品已不存在。"
+
+#. module: odeck_bridge
+msgid "The selected taxes do not belong to the selected company "
+"or its accessible branches."
+msgstr "所选税项不属于当前公司或其可访问的分支公司。"
+
+#. module: odeck_bridge
+msgid "Valid currency and company IDs are required."
+msgstr "必须提供有效的币种 ID 和公司 ID。"
+
+#. module: odeck_bridge
+msgid "You are not allowed to calculate taxes for the selected company."
+msgstr "你无权为所选公司计算税额。"
+
+#. module: odeck_bridge
+msgid "You do not have read access to these records."
+msgstr "你没有读取这些记录的权限。"
+
+#. module: odeck_bridge
+msgid "One or more tax records do not exist."
+msgstr "一个或多个税项记录不存在。"
+
+#. module: odeck_bridge
+msgid "A valid pricelist, product, and quantity are required."
+msgstr "必须提供有效的价格表、商品和数量。"
