@@ -11,24 +11,30 @@ class ProductPricelist(models.Model):
     def mobile_get_product_price(
         self, pricelist_id, product_id, quantity=1.0, date=None
     ):
-        """通过外部 API 返回一个商品的 Odoo 标准价格。
+        """Return an Odoo-calculated product price through the external API.
 
-        外部 API 不能传输 ORM 记录集。此公开包装方法接收 ID、检查标准读取
-        权限，再交由 Odoo 17/18/19 标准价格表引擎计算。
+        The API accepts record IDs rather than ORM recordsets, checks read access,
+        and delegates calculation to Odoo's standard pricelist engine.
         """
         try:
             pricelist_id = int(pricelist_id)
             product_id = int(product_id)
             quantity = float(quantity)
         except (TypeError, ValueError):
-            raise ValidationError(_("必须提供有效的价格表、商品和数量。"))
+            raise ValidationError(
+                _("A valid pricelist, product, and quantity are required.")
+            )
         if pricelist_id <= 0 or product_id <= 0 or quantity <= 0:
-            raise ValidationError(_("价格表、商品和数量必须大于零。"))
+            raise ValidationError(
+                _("Pricelist, product, and quantity must be greater than zero.")
+            )
 
         pricelist = self.browse(pricelist_id).exists()
         product = self.env["product.product"].browse(product_id).exists()
         if not pricelist or not product:
-            raise ValidationError(_("所选价格表或商品已不存在。"))
+            raise ValidationError(
+                _("The selected pricelist or product no longer exists.")
+            )
 
         ensure_read_access(pricelist)
         ensure_read_access(product)
