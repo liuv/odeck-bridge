@@ -1,0 +1,106 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="col-md-2 text-center">
+      <img src="icon.png" alt="Odeck Bridge icon" class="img img-fluid" width="128" height="128" />
+    </div>
+    <div class="col-md-10">
+      <h2 class="oe_slogan">Odeck Bridge</h2>
+      <h3 class="oe_slogan">Accurate POS pricing and tax calculations for Odoo</h3>
+      <p>
+        Odeck Bridge provides two small, permission-checked server adapters that let a
+        mobile client call Odoo's own pricelist and tax engines. It is an optional
+        technical addon. It does not replace Odoo workflows or introduce a separate
+        business data model.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="col-md-6">
+      <h3>What it provides</h3>
+      <ul>
+        <li>Calculates product prices through the selected Odoo pricelist.</li>
+        <li>Calculates taxes through Odoo's standard tax engine.</li>
+        <li>Passes the transaction currency, company, product, customer, quantity,
+          and refund context needed for POS calculations.</li>
+        <li>Checks access to the relevant Odoo records and company scope.</li>
+        <li>Returns JSON-safe results for the mobile client.</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3>Designed to stay small</h3>
+      <ul>
+        <li>No license keys, activation checks, database UUID binding, or telemetry.</li>
+        <li>No customer-specific fields, models, or business rules.</li>
+        <li>No business-record writes and no use of <code>sudo()</code> in these APIs.</li>
+        <li>Does not require the Odoo Point of Sale module to be installed.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="col-md-12">
+      <h3>When is this addon needed?</h3>
+      <p>
+        The Odeck mobile client uses standard Odoo JSON-RPC for login and ordinary
+        inventory, sales, dashboard, and POS order browsing. Odeck Bridge is only
+        needed when a POS transaction requires server-side pricelist or tax
+        calculation. If one of those calculations cannot be completed, the client
+        stops the operation instead of submitting an estimated amount.
+      </p>
+      <p>
+        This addon has no user-facing menus. Install it when the mobile POS workflow
+        needs these calculation endpoints; other client features can be used without it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="col-md-6">
+      <h3>Requirements</h3>
+      <ul>
+        <li>Odoo 17, 18, 19, or 20, with the matching Odeck Bridge release.</li>
+        <li>Odoo standard <code>account</code> and <code>product</code> modules.</li>
+        <li>An Odoo.sh or on-premise deployment that permits Python addons.</li>
+        <li>Users need the standard model and record access required by their POS setup.</li>
+      </ul>
+      <p>
+        Odoo Online does not support installing third-party Python addons. Check your
+        hosting plan before installing this module.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h3>Installation</h3>
+      <ol>
+        <li>Place the <code>odeck_bridge</code> module in an Odoo addons path.</li>
+        <li>Restart Odoo and update the Apps list.</li>
+        <li>Install Odeck Bridge and update it when a new release is deployed.</li>
+        <li>Use the Odeck mobile client with an Odoo account that has the required access.</li>
+      </ol>
+      <p>
+        The addon performs no external data transfer. Odoo record permissions and
+        company rules remain in force.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="col-md-12">
+      <h3>Companion mobile client</h3>
+      <p>
+        The mobile client is distributed separately. On your device, search for
+        <strong>Odeck</strong> in its official app marketplace and check that the
+        publisher is <strong>Linden Liu</strong>. The client connects to your own
+        Odoo server; this addon does not provide hosting or an Odoo account.
+      </p>
+    </div>
+  </div>
+</section>
