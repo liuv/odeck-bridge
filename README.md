@@ -16,7 +16,7 @@ The banner above is a generated product illustration. The feature overview below
 
 ## Android APK downloads
 
-When a signed Android release is available, download the APK from [GitHub Releases](https://github.com/liuv/odeck-bridge/releases). The APK is distributed as a release asset rather than inside the Odoo addon. Check the release notes for the app version, supported Odoo versions, and SHA-256 checksum.
+Download the signed Android APK: [Odeck Mobile 0.1.0](https://github.com/liuv/odeck-bridge/releases/download/mobile-v0.1.0%2B1/Odeck-0.1.0%2B1-android-release.apk) · [release notes and checksums](https://github.com/liuv/odeck-bridge/releases/tag/mobile-v0.1.0%2B1). The APK is distributed as a GitHub release asset rather than inside the Odoo addon.
 
 Android updates must keep the same signing identity as the installed app. Development/debug builds are not suitable as update packages. Odeck Bridge does not download or install the APK; users install the mobile client separately.
 
