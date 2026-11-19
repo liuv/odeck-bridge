@@ -10,15 +10,9 @@ Odeck Bridge is a free, optional Odoo addon that lets the Odeck mobile POS clien
 
 Odeck Mobile connects to your own Odoo server and provides a mobile view for products, sales orders, inventory, sales performance, and POS workflows. Odeck Bridge is only required for server-side POS pricelist and tax calculations; ordinary login, browsing, and order viewing use Odoo's standard APIs.
 
-The banner above is a generated product illustration. The screens below use app simulator captures presented in iPhone frames. The sales performance screen uses illustrative demo figures, not live customer data.
+The banner above is a generated product illustration. The feature overview below is a custom composition made from original app simulator captures; every phone uses the same frame and scale. Sales figures are illustrative demo data, not live customer data.
 
-| Product catalog | Sales performance |
-| --- | --- |
-| ![Product catalog in an iPhone frame](assets/marketing/products-iphone.png) | ![Sales performance with illustrative demo figures in an iPhone frame](assets/marketing/performance-iphone.png) |
-
-| Sales orders | Navigation menu |
-| --- | --- |
-| ![Sales orders in an iPhone frame](assets/marketing/sales-orders-iphone.png) | ![Expanded navigation menu in an iPhone frame](assets/marketing/navigation-menu-iphone.png) |
+![Odeck Mobile simulator screens: product catalog, sales insights, sales orders, and expanded navigation](assets/marketing/odeck-mobile-screens-showcase.png)
 
 ## Android APK downloads
 
