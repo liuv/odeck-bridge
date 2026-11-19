@@ -1,6 +1,6 @@
 {
     "name": "Odeck Bridge",
-    "summary": "Versioned standard API helpers for Odoo mobile clients",
+    "summary": "Odoo mobile POS pricing and tax calculation using standard pricelists with Odeck Mobile",
     "author": "Linden Liu",
     "maintainer": "Linden Liu",
     "support": "lindenliu@hotmail.com",
@@ -9,11 +9,11 @@
     "version": "19.0.1.0.6",
     "category": "Tools",
     "images": [
-        "images/odeck_mobile_splash.png",
-        "images/odeck_mobile_products.png",
-        "images/odeck_mobile_sales_performance.png",
-        "images/odeck_mobile_sales_orders.png",
+        "images/odeck_mobile_pos_cover.gif",
         "images/odeck_bridge_flow.png",
+        "images/odeck_mobile_products.png",
+        "images/odeck_mobile_sales_orders.png",
+        "images/odeck_mobile_sales_performance.png",
     ],
     "license": "LGPL-3",
     "depends": ["account", "product"],

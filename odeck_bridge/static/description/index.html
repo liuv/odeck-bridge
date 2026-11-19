@@ -1,111 +1,152 @@
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="background: linear-gradient(135deg, #f4f0f3 0%, #eef6f4 54%, #f7f3ed 100%); border-radius: 28px; overflow: hidden; padding: 34px 22px 10px;">
-    <div class="col-md-5" style="padding: 38px 26px 20px;">
-      <p style="letter-spacing: 3px; color: #438e89; font-size: 12px; font-weight: 700;">ODECK BRIDGE · ODOO SERVER ADDON</p>
-      <h1 style="color: #253b48; font-size: 42px; line-height: 1.08; font-weight: 700;">Accurate POS calculations,<br/>through Odoo.</h1>
-      <p style="color: #536772; font-size: 17px; line-height: 1.7; max-width: 440px;">Odeck Bridge exposes small, permission-checked endpoints for the Odoo pricelist and tax engines. It is an optional server-side companion for the Odeck mobile POS flow.</p>
-      <div style="margin-top: 26px;">
-        <span style="display: inline-block; background: #315c72; color: white; border-radius: 24px; padding: 11px 18px; margin: 4px 5px 4px 0;">Odoo pricelist engine</span>
-        <span style="display: inline-block; background: #e2ece9; color: #315c72; border-radius: 24px; padding: 11px 18px; margin: 4px 0;">Odoo tax engine</span>
+<section class="oe_container mt-4 mb-4">
+  <div class="p-4 p-md-5 rounded" style="background-color: #f0f6f7; color: #172c3c;">
+    <p class="mb-2 font-weight-bold" style="color: #14675f;">Odeck Bridge</p>
+    <h2 class="mb-3">Odoo Mobile POS: Pricelist and Tax Calculation</h2>
+    <p class="lead mb-2">
+      Apply your Odoo pricelists and tax rules when you check out in Odeck Mobile.
+    </p>
+    <p class="mb-0">
+      Odeck Bridge is an optional Odoo server addon for the Odeck Mobile point of sale.
+      It checks the signed-in user's access, runs the standard Odoo calculation on your
+      server, and returns the price or tax totals to the app.
+    </p>
+  </div>
+</section>
+
+<section class="oe_container mb-5">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-9">
+      <h3 class="mb-3">How Odeck Bridge works</h3>
+      <p>
+        For example, when a cashier changes the quantity of a product, Odoo evaluates
+        the selected pricelist for that product, quantity and date. The mobile POS can
+        then request a tax calculation with the unit price, taxes, currency, company,
+        customer and refund context.
+      </p>
+      <img src="odeck_bridge_flow.png" class="img-fluid w-100 rounded"
+        alt="Odeck Mobile POS sends a request to Odeck Bridge, which applies Odoo pricelist and tax rules under the user's access permissions" />
+    </div>
+    <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
+      <img src="screenshots/store-pos.jpg" class="img-fluid rounded" width="176"
+        alt="Odeck Mobile POS Settings on iPhone showing Standard pricelist management" />
+      <p class="small mt-2 mb-0">Pricelist settings in Odeck Mobile</p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container mb-5">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+      <div class="h-100 p-4 border rounded">
+        <h3>Pricing and tax APIs</h3>
+        <ul class="pl-3 mb-0">
+          <li><strong>Product pricing:</strong> use the selected Odoo pricelist to calculate a unit price for a product, quantity and date.</li>
+          <li><strong>POS tax calculation:</strong> ask Odoo to compute totals with and without tax, including the per-tax breakdown.</li>
+          <li><strong>Checkout behavior:</strong> if a required calculation fails, the client stops the operation before submitting the order.</li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-7" style="position: relative; min-height: 590px;">
-      <img src="screenshots/retail-flow-art.png" alt="Abstract retail operations illustration" style="position: absolute; width: 115%; height: 100%; object-fit: contain; left: -7%; top: 0; opacity: .62;"/>
-      <div style="position: absolute; z-index: 2; width: 230px; left: 3%; top: 104px; transform: rotate(-8deg); background: #16232b; padding: 7px; border-radius: 32px; box-shadow: 0 24px 50px rgba(28,45,54,.24);">
-        <img src="screenshots/home-screen.png" alt="Odeck mobile overview screen" style="width: 100%; display: block; border-radius: 25px;"/>
-      </div>
-      <div style="position: absolute; z-index: 3; width: 255px; left: 34%; top: 20px; background: #16232b; padding: 7px; border-radius: 34px; box-shadow: 0 28px 58px rgba(28,45,54,.3);">
-        <img src="screenshots/product-screen.png" alt="Odeck product catalog with product photos" style="width: 100%; display: block; border-radius: 27px;"/>
-      </div>
-      <div style="position: absolute; z-index: 1; width: 220px; right: 0; top: 145px; transform: rotate(8deg); background: #16232b; padding: 7px; border-radius: 32px; box-shadow: 0 22px 46px rgba(28,45,54,.22);">
-        <img src="screenshots/performance-screen.png" alt="Odeck sales performance dashboard" style="width: 100%; display: block; border-radius: 25px;"/>
+    <div class="col-12 col-md-6">
+      <div class="h-100 p-4 border rounded">
+        <h3>Permissions and data</h3>
+        <ul class="pl-3 mb-0">
+          <li>Both APIs run as the authenticated Odoo user and enforce record access and company scope.</li>
+          <li>Calculation calls use no <code>sudo()</code> and make no writes to business records.</li>
+          <li>The addon adds no menus or business models, contacts no external service, and requires no activation key.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="padding: 28px 10px 42px;">
-    <div class="col-md-6" style="padding: 30px 28px;">
-      <p style="letter-spacing: 2px; color: #8f4d6b; font-size: 11px; font-weight: 700;">THE BIGGER PICTURE</p>
-      <h2 style="font-size: 30px; color: #253b48;">A quick read on how business is moving.</h2>
-      <p style="color: #61717a; line-height: 1.7;">The performance view brings sales totals, team rankings, and trends together. This showcase uses sample figures to demonstrate the layout; your Odoo account supplies your own data.</p>
-    </div>
-    <div class="col-md-6" style="padding: 12px 24px;">
-      <div style="padding: 14px; background: #eaf4f6; border-radius: 30px 30px 72px 30px; transform: rotate(2deg); box-shadow: 0 18px 42px rgba(30,56,68,.15);">
-        <img src="screenshots/sales-performance-showcase.png" alt="Odeck sales performance showcase with sample chart data" style="width: 100%; display: block; border-radius: 18px;"/>
+<section class="oe_container mb-5">
+  <h3>Explore the Odeck Mobile app for Odoo</h3>
+  <p>
+    Odeck Mobile is the separate Android and iPhone client. It connects to your Odoo
+    database for inventory, product management, sales orders and sales reports.
+    Login and ordinary browsing use standard Odoo APIs and work without Bridge.
+    Install Bridge when your mobile POS workflow requires Odoo to calculate prices or taxes.
+  </p>
+  <div class="row text-center">
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-products.jpg">
+          <img src="screenshots/store-products.jpg" class="img-fluid" width="200"
+            alt="Odeck Mobile product catalog with product photos, prices and on-hand stock in Odoo" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Products &amp; inventory</h4>
+        <p class="small mb-2">Check prices and on-hand stock.</p>
       </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-orders.jpg">
+          <img src="screenshots/store-orders.jpg" class="img-fluid" width="200"
+            alt="Odoo sales order list in Odeck Mobile showing customers, order amounts and statuses" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Sales orders</h4>
+        <p class="small mb-2">Review customers, amounts and status.</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-performance.jpg">
+          <img src="screenshots/store-performance.jpg" class="img-fluid" width="200"
+            alt="Odeck Mobile sales performance dashboard with totals, average order value and salesperson ranking" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Sales performance</h4>
+        <p class="small mb-2">See sales totals and team rankings.</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-navigation.jpg">
+          <img src="screenshots/store-navigation.jpg" class="img-fluid" width="200"
+            alt="Expanded Odeck Mobile menu showing Dashboard, Sales, Inventory and Point of Sale" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Mobile navigation</h4>
+        <p class="small mb-2">Open inventory, sales or POS from the menu.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center mt-3">
+    <div class="col-12 col-md-7">
+      <h4>Sales reporting with sample data</h4>
+      <p>
+        A closer look at the Odeck Mobile sales dashboard: review order volume,
+        compare sales trends, and see how individual salespeople contribute to the
+        team's results. The figures in this preview are demo data.
+      </p>
+    </div>
+    <div class="col-12 col-md-5 text-center">
+      <a href="screenshots/sales-performance-showcase.png">
+        <img src="screenshots/store-sales-demo.jpg" class="img-fluid rounded" width="225"
+          alt="Odeck Mobile sample sales report with order volume, salesperson ranking and sales trend chart" />
+      </a>
     </div>
   </div>
 </section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="padding: 38px 10px 18px;">
-    <div class="col-md-4" style="padding: 22px 24px;">
-      <p style="letter-spacing: 2px; color: #438e89; font-size: 11px; font-weight: 700;">COMPANION CLIENT PREVIEW</p>
-      <h2 style="font-size: 30px; color: #253b48;">A mobile view backed by Odoo.</h2>
-      <p style="color: #61717a; line-height: 1.7;">These simulator screens show the separate Odeck Mobile client. Odeck Bridge itself adds no mobile UI, menus, or new business models; it provides server-side calculation endpoints for POS.</p>
-      <p style="color: #61717a; line-height: 1.7;">Example figures in the screenshots are illustrative. The client reads business records from the connected Odoo database.</p>
-      <div style="display: inline-block; margin-top: 8px; padding: 12px 16px 8px; background: #f4f0f3; border-radius: 22px; text-align: center;">
-        <img src="screenshots/odeck-splash.png" alt="Odeck launch illustration" style="width: 118px; height: 118px; object-fit: contain; display: block;"/>
-        <p style="margin: 2px 0 0; color: #718089; font-size: 11px;">© 2026 Odeck</p>
-      </div>
-    </div>
-    <div class="col-md-8" style="position: relative; min-height: 500px; background: #f4f3f0; border-radius: 28px; overflow: hidden;">
-      <div style="position: absolute; width: 228px; left: 8%; top: 74px; transform: rotate(-5deg); background: #15232b; padding: 7px; border-radius: 32px; box-shadow: 0 18px 42px rgba(27,47,57,.2);">
-        <img src="screenshots/orders-screen.png" alt="Sales orders on Odeck mobile" style="width:100%; display:block; border-radius:25px;"/>
-      </div>
-      <div style="position: absolute; width: 255px; left: 39%; top: 28px; background: #15232b; padding: 7px; border-radius: 35px; box-shadow: 0 24px 48px rgba(27,47,57,.24);">
-        <img src="screenshots/performance-screen.png" alt="Sales performance with charts and summaries" style="width:100%; display:block; border-radius:28px;"/>
-      </div>
-      <div style="position: absolute; right: 7%; bottom: 34px; border-radius: 18px; padding: 13px 19px; background: white; color: #315c72; font-weight: 600; box-shadow: 0 10px 26px rgba(27,47,57,.12);">One mobile workspace · Odoo data</div>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="background: #f4f0f3; border-radius: 26px; padding: 34px 20px;">
-    <div class="col-md-4" style="padding: 12px 22px;">
-      <p style="letter-spacing: 2px; color: #438e89; font-size: 11px; font-weight: 700;">OPTIONAL SERVER COMPANION</p>
-      <h2 style="font-size: 28px; color: #253b48;">Odeck Bridge</h2>
-      <p style="color: #536772; line-height: 1.7;">A small, permission-checked adapter that lets Odeck Mobile use Odoo's own pricelist and tax engines for POS calculations.</p>
-      <p style="color: #536772; line-height: 1.7;">The addon has no user-facing menus and does not replace standard Odoo workflows.</p>
-    </div>
-    <div class="col-md-8" style="padding: 12px;">
-      <img src="../../images/odeck_bridge_flow.png" alt="How Odeck Bridge connects the mobile POS client to Odoo pricing and tax calculations" class="img img-fluid" style="width: 100%; border-radius: 18px; box-shadow: 0 12px 32px rgba(28,45,54,.12);"/>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="padding: 30px 14px;">
-    <div class="col-md-3"><h4 style="color: #315c72;">Odoo-native</h4><p>Uses standard products, orders, inventory and POS data.</p></div>
-    <div class="col-md-3"><h4 style="color: #315c72;">Permission aware</h4><p>Odoo model access and company rules remain in force.</p></div>
-    <div class="col-md-3"><h4 style="color: #315c72;">Optional addon</h4><p>Install Bridge only when the POS flow needs server-side calculations.</p></div>
-    <div class="col-md-3"><h4 style="color: #315c72;">No business writes</h4><p>Bridge calculation endpoints do not create or update business records.</p></div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-md-6">
+<section class="oe_container mb-5">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
       <h3>Requirements</h3>
-      <ul>
-        <li>Odoo 17, 18, 19, or 20, with the matching Odeck Bridge release.</li>
-        <li>Standard <code>account</code> and <code>product</code> modules.</li>
-        <li>An Odoo.sh or on-premise deployment that permits Python addons.</li>
-        <li>Odoo Online does not support third-party Python addons.</li>
+      <ul class="pl-3">
+        <li>Use the Odeck Bridge release matching your Odoo version (17.0 through 20.0).</li>
+        <li>Requires the standard <code>account</code> and <code>product</code> modules. The Bridge addon itself has no <code>point_of_sale</code> dependency.</li>
+        <li>Choose Odoo.sh or a self-hosted server that supports Python addons. Odoo Online does not support third-party Python addons.</li>
+        <li>Use an Odoo account with access to the models and records required by your POS setup.</li>
       </ul>
     </div>
-    <div class="col-md-6">
-      <h3>Installation</h3>
-      <ol>
-        <li>Place <code>odeck_bridge</code> in an Odoo addons path.</li>
+    <div class="col-12 col-md-6">
+      <h3>Install and connect</h3>
+      <ol class="pl-3">
+        <li>Copy <code>odeck_bridge</code> into your Odoo addons path.</li>
         <li>Restart Odoo and update the Apps list.</li>
-        <li>Install the matching Odeck Bridge release.</li>
-        <li>Connect Odeck Mobile to your Odoo server.</li>
+        <li>Install <strong>Odeck Bridge</strong> in your Odoo database.</li>
+        <li>Open Odeck Mobile, connect to that database, and sign in with your Odoo account.</li>
       </ol>
+      <p>Support: <a href="mailto:lindenliu@hotmail.com">lindenliu@hotmail.com</a></p>
     </div>
-    <div class="col-md-12 text-center" style="padding-top: 24px; color: #77858d; font-size: 12px;">© 2026 Odeck · Optional server-side POS calculation endpoints</div>
   </div>
 </section>
