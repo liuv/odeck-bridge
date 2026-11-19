@@ -1,121 +1,151 @@
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-sm-2 text-center">
-      <img src="icon.png" alt="Odeck Bridge icon" class="img img-fluid" width="128" height="128" />
-    </div>
-    <div class="col-sm-10">
-      <h2 class="oe_slogan">Odeck Bridge</h2>
-      <h3 class="oe_slogan">Accurate POS pricing and tax calculations for Odoo</h3>
-      <p class="text-center">
-        Odeck Bridge is an optional server adapter for the Odeck mobile POS workflow.
-        It lets the mobile client request calculations from Odoo's own pricelist and tax
-        engines, so prices and taxes follow the rules configured in your database.
-        It does not replace Odoo workflows or add a separate business data model.
-      </p>
-    </div>
+<section class="oe_container mt-4 mb-4">
+  <div class="p-4 p-md-5 rounded" style="background-color: #f0f6f7; color: #172c3c;">
+    <p class="mb-2 font-weight-bold" style="color: #14675f;">Odeck Bridge</p>
+    <h2 class="mb-3">Odoo Mobile POS: Pricelist and Tax Calculation</h2>
+    <p class="lead mb-2">
+      Apply your Odoo pricelists and tax rules when you check out in Odeck Mobile.
+    </p>
+    <p class="mb-0">
+      Odeck Bridge is an optional Odoo server addon for the Odeck Mobile point of sale.
+      It checks the signed-in user's access, runs the standard Odoo calculation on your
+      server, and returns the price or tax totals to the app.
+    </p>
   </div>
 </section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-md-12">
-      <h3 class="text-center">How Odeck Bridge works</h3>
-      <p class="text-center">
-        During a POS transaction, Odeck Mobile sends the required context to Odeck
-        Bridge. The adapter checks access, asks Odoo to calculate the price or tax,
-        and returns the result to the client. The calculation endpoints do not create
-        or update business records.
-      </p>
-      <img src="odeck_bridge_flow.png" alt="Odeck Mobile POS requests pass through Odeck Bridge to Odoo's pricelist and tax engines" class="img img-fluid center-block" />
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-sm-6">
-      <h3>What it provides</h3>
-      <ul>
-        <li>Calculates product prices through the selected Odoo pricelist.</li>
-        <li>Calculates taxes through Odoo's standard tax engine.</li>
-        <li>Passes the transaction currency, company, product, customer, quantity,
-          and refund context needed for POS calculations.</li>
-        <li>Checks access to relevant Odoo records and company scope.</li>
-        <li>Returns JSON-safe results to the mobile client.</li>
-      </ul>
-    </div>
-    <div class="col-sm-6">
-      <h3>Designed to stay small</h3>
-      <ul>
-        <li>No license keys, activation checks, database UUID binding, or telemetry.</li>
-        <li>No customer-specific fields, models, or business rules.</li>
-        <li>No business-record writes and no use of <code>sudo()</code> in these APIs.</li>
-        <li>Does not require the Odoo Point of Sale module to be installed.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-md-12">
-      <h3>When is this addon needed?</h3>
+<section class="oe_container mb-5">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-9">
+      <h3 class="mb-3">How Odeck Bridge works</h3>
       <p>
-        The Odeck mobile client uses standard Odoo JSON-RPC for login and ordinary
-        inventory, sales, dashboard, and POS order browsing. Odeck Bridge is only
-        needed when a POS transaction requires server-side pricelist or tax
-        calculation. If a calculation cannot be completed, the client stops the
-        operation instead of submitting an estimated amount.
+        For example, when a cashier changes the quantity of a product, Odoo evaluates
+        the selected pricelist for that product, quantity and date. The mobile POS can
+        then request a tax calculation with the unit price, taxes, currency, company,
+        customer and refund context.
       </p>
-      <p>
-        This addon has no user-facing menus. Install it when the mobile POS workflow
-        needs these calculation endpoints; other client features can be used without it.
-      </p>
+      <img src="odeck_bridge_flow.png" class="img-fluid w-100 rounded"
+        alt="Odeck Mobile POS sends a request to Odeck Bridge, which applies Odoo pricelist and tax rules under the user's access permissions" />
+    </div>
+    <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
+      <img src="screenshots/store-pos.jpg" class="img-fluid rounded" width="176"
+        alt="Odeck Mobile POS Settings on iPhone showing Standard pricelist management" />
+      <p class="small mt-2 mb-0">Pricelist settings in Odeck Mobile</p>
     </div>
   </div>
 </section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-sm-6">
+<section class="oe_container mb-5">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+      <div class="h-100 p-4 border rounded">
+        <h3>Pricing and tax APIs</h3>
+        <ul class="pl-3 mb-0">
+          <li><strong>Product pricing:</strong> use the selected Odoo pricelist to calculate a unit price for a product, quantity and date.</li>
+          <li><strong>POS tax calculation:</strong> ask Odoo to compute totals with and without tax, including the per-tax breakdown.</li>
+          <li><strong>Checkout behavior:</strong> if a required calculation fails, the client stops the operation before submitting the order.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="h-100 p-4 border rounded">
+        <h3>Permissions and data</h3>
+        <ul class="pl-3 mb-0">
+          <li>Both APIs run as the authenticated Odoo user and enforce record access and company scope.</li>
+          <li>Calculation calls use no <code>sudo()</code> and make no writes to business records.</li>
+          <li>The addon adds no menus or business models, contacts no external service, and requires no activation key.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container mb-5">
+  <h3>Explore the Odeck Mobile app for Odoo</h3>
+  <p>
+    Odeck Mobile is the separate Android and iPhone client. It connects to your Odoo
+    database for inventory, product management, sales orders and sales reports.
+    Login and ordinary browsing use standard Odoo APIs and work without Bridge.
+    Install Bridge when your mobile POS workflow requires Odoo to calculate prices or taxes.
+  </p>
+  <div class="row text-center">
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-products.jpg">
+          <img src="screenshots/store-products.jpg" class="img-fluid" width="200"
+            alt="Odeck Mobile product catalog with product photos, prices and on-hand stock in Odoo" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Products &amp; inventory</h4>
+        <p class="small mb-2">Check prices and on-hand stock.</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-orders.jpg">
+          <img src="screenshots/store-orders.jpg" class="img-fluid" width="200"
+            alt="Odoo sales order list in Odeck Mobile showing customers, order amounts and statuses" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Sales orders</h4>
+        <p class="small mb-2">Review customers, amounts and status.</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-performance.jpg">
+          <img src="screenshots/store-performance.jpg" class="img-fluid" width="200"
+            alt="Odeck Mobile sales performance dashboard with totals, average order value and salesperson ranking" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Sales performance</h4>
+        <p class="small mb-2">See sales totals and team rankings.</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 mb-3">
+      <div class="h-100 p-2 rounded" style="background-color: #f0f6f7;">
+        <a href="screenshots/store-navigation.jpg">
+          <img src="screenshots/store-navigation.jpg" class="img-fluid" width="200"
+            alt="Expanded Odeck Mobile menu showing Dashboard, Sales, Inventory and Point of Sale" />
+        </a>
+        <h4 class="h6 mt-2 mb-1">Mobile navigation</h4>
+        <p class="small mb-2">Open inventory, sales or POS from the menu.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center mt-3">
+    <div class="col-12 col-md-7">
+      <h4>Sales reporting with sample data</h4>
+      <p>
+        A closer look at the Odeck Mobile sales dashboard: review order volume,
+        compare sales trends, and see how individual salespeople contribute to the
+        team's results. The figures in this preview are demo data.
+      </p>
+    </div>
+    <div class="col-12 col-md-5 text-center">
+      <a href="screenshots/sales-performance-showcase.png">
+        <img src="screenshots/store-sales-demo.jpg" class="img-fluid rounded" width="225"
+          alt="Odeck Mobile sample sales report with order volume, salesperson ranking and sales trend chart" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container mb-5">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
       <h3>Requirements</h3>
-      <ul>
-        <li>Odoo 17, 18, 19, or 20, with the matching Odeck Bridge release.</li>
-        <li>Odoo standard <code>account</code> and <code>product</code> modules.</li>
-        <li>An Odoo.sh or on-premise deployment that permits Python addons.</li>
-        <li>Users need the standard model and record access required by their POS setup.</li>
+      <ul class="pl-3">
+        <li>Use the Odeck Bridge release matching your Odoo version (17.0 through 20.0).</li>
+        <li>Requires the standard <code>account</code> and <code>product</code> modules. The Bridge addon itself has no <code>point_of_sale</code> dependency.</li>
+        <li>Choose Odoo.sh or a self-hosted server that supports Python addons. Odoo Online does not support third-party Python addons.</li>
+        <li>Use an Odoo account with access to the models and records required by your POS setup.</li>
       </ul>
-      <p>
-        Odoo Online does not support installing third-party Python addons. Check your
-        hosting plan before installing this module.
-      </p>
     </div>
-    <div class="col-sm-6">
-      <h3>Installation</h3>
-      <ol>
-        <li>Place the <code>odeck_bridge</code> module in an Odoo addons path.</li>
+    <div class="col-12 col-md-6">
+      <h3>Install and connect</h3>
+      <ol class="pl-3">
+        <li>Copy <code>odeck_bridge</code> into your Odoo addons path.</li>
         <li>Restart Odoo and update the Apps list.</li>
-        <li>Install Odeck Bridge and update it when a new release is deployed.</li>
-        <li>Use the Odeck mobile client with an Odoo account that has the required access.</li>
+        <li>Install <strong>Odeck Bridge</strong> in your Odoo database.</li>
+        <li>Open Odeck Mobile, connect to that database, and sign in with your Odoo account.</li>
       </ol>
-      <p>
-        The addon performs no external data transfer. Odoo record permissions and
-        company rules remain in force.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="col-md-12">
-      <h3>Companion mobile client</h3>
-      <p>
-        Odeck Mobile is distributed separately and connects to your own Odoo server.
-        Odeck Bridge is only required when its POS workflow needs server-side
-        pricelist or tax calculations. This addon does not provide a mobile
-        application, hosting, or an Odoo account.
-      </p>
       <p>Support: <a href="mailto:lindenliu@hotmail.com">lindenliu@hotmail.com</a></p>
     </div>
   </div>
